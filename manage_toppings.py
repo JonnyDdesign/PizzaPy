@@ -54,4 +54,4 @@ def main():
     pizza_list.display_toppings()
 
 if __name__ == "__main__":
-    main()    
+    main()
