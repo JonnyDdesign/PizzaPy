@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from manage_toppings import PizzaToppingsList
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 
 # Instantiate PizzaToppingsList to manage toppings
 pizza_list = PizzaToppingsList()
