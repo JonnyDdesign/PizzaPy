@@ -1,6 +1,8 @@
 #Manage specialty pizzas section
 
-specialty_pizzas = [
+class SpecialtyPizzas:
+    def __init__(self):
+        self.specialty_pizzas = [
     {
         "name": "Margherita",
         "toppings": ["Tomatoes", "Mozzarella", "Basil"]

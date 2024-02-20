@@ -31,7 +31,7 @@ class PizzaToppingsList:
         for topping in self.toppings:
             print("-", topping)
 
-def main():
+def manage_pizza_toppings():
     pizza_list = PizzaToppingsList()
 
     pizza_list.display_toppings()
@@ -54,4 +54,4 @@ def main():
     pizza_list.display_toppings()
 
 if __name__ == "__main__":
-    main()
+    manage_pizza_toppings()
