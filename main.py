@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, jsonify
 from manage_toppings import PizzaToppingsList
 
 app = Flask(__name__)
@@ -8,7 +8,7 @@ pizza_list = PizzaToppingsList()
 
 @app.route("/")
 def index():
-    return "Welcome to PizzaPy! Let's manage some pizza toppings and specialty pizzas."
+    return render_template("index.html")
 
 @app.route("/toppings", methods=["GET"])
 def get_toppings():
