@@ -2,10 +2,11 @@
 
 class PizzaToppingsList:
     def __init__(self):
-        self.toppings = ["pepperoni", "sausage", "ham", "pineapple", "green peppers", "black olives", "mushrooms", "onions", "jalapenos", "broccoli" ]
+        self.toppings = ["Pepperoni", "Sausage", "Ham", "Pineapple", "Green Peppers", "Black Olives", "Mushrooms", "Onions", "Jalapenos", "Broccoli" ]
 
     def add_topping(self, new_topping):
-        if new_topping.lower() not in map(str.lower, self.toppings):
+        normalized_toppings = [topping.lower() for topping in self.toppings]
+        if new_topping.lower() not in normalized_toppings:
             self.toppings.append(new_topping)
             print(f"{new_topping} has been added to the list of pizza toppings.")
         else:

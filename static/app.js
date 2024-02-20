@@ -13,6 +13,7 @@ function displayToppings() {
             // Add delete button
             const deleteButton = document.createElement("button");
             deleteButton.textContent = "Delete";
+            deleteButton.className = "delete-button";
             deleteButton.onclick = function() {
                 deleteTopping(topping);
             };

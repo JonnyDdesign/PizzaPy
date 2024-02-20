@@ -10,6 +10,14 @@ pizza_list = PizzaToppingsList()
 def index():
     return render_template("index.html")
 
+@app.route("/manage_toppings")
+def manage_toppings():
+    return render_template("manage_toppings.html")
+
+@app.route("/manage_pizzas")
+def manage_pizzas():
+    return render_template("manage_pizzas.html")
+
 @app.route("/toppings", methods=["GET"])
 def get_toppings():
     return jsonify({"toppings": pizza_list.toppings})

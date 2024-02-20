@@ -9,18 +9,17 @@
 </head>
 
 <body>
+    <h2>Manage Pizza Toppings</h2>
+    
+    <h3>Current Toppings</h3>
+    <ul id="toppings-list">-->
+        <!-- Toppings will be added dynamically here -->
+    </ul>
 
-    <h1>Welcome to the Pizza<span class="py">Py</span></h1>
-    <section>
-        <h2>Manage Toppings</h2>
-        <button onclick="window.location.href='/manage_toppings'">Click to Manage Toppings</button>
-    </section>
-    <section>
-        <h2>Manage Pizzas</h2>
-        <button onclick="window.location.href='/manage_pizzas'">Click to Manage Pizzas</button>
-    </section>
+    <h3>Add New Topping</h3>
+    <input type="text" id="new-topping" placeholder="Enter new topping">
+    <button class="add-topping-button" onclick="addTopping()">Add Topping</button>
 
     <script src="{{ url_for('static', filename='app.js') }}"></script>
 
 </body>
-</html>
