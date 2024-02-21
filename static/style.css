@@ -25,7 +25,7 @@ p {
 }
 
 .lead-question {
-    font-size: clamp(2rem, 4vw, 4rem);
+    font-size: clamp(2rem, 3vw, 4rem);
     margin-top: 0;
 }
 
@@ -38,14 +38,15 @@ p {
 }
 
 li {
-    margin: 5px 0;
+    font-size: clamp(0.8rem, 2vw, 2rem);
+    margin: 8px 0;
 }
 
 button {
-    font-size: clamp(0.8rem, 2vw, 2rem);
+    font-size: clamp(0.8rem, 1.5vw, 2rem);
     background-color: #FFAD00;
     color: #FEFEFF;
-    border: none;
+    border: 1px dotted #FEFEFF;
     border-radius: 10px;
     padding: 5px 10px;
     margin: 3px;
@@ -54,6 +55,6 @@ button {
 
 @media only screen and (min-width: 769px) {
     img {
-        width: 30%;
+        width: 20%;
     }
 }

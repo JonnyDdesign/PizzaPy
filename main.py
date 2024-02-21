@@ -57,22 +57,15 @@ def update_topping():
 # Routes to return list of pizzas, add a new pizza, delete a pizza, update a pizza, and update pizza toppings
 @app.route('/pizzas', methods=['GET'])
 def get_pizzas():
-    return jsonify(pizza_manager.pizzas)
-
-@app.route('/pizzas/<pizza_name>', methods=['GET'])
-def get_pizza(pizza_name):
-    if pizza_name.lower() in pizza_manager.pizzas:
-        return jsonify({pizza_name: pizza_manager.pizzas[pizza_name.lower()]})
-    else:
-        return jsonify({"error": "Pizza not found"}), 404
+    return jsonify(pizza_manager.existing_pizzas)
 
 @app.route('/pizzas', methods=['POST'])
-def add_pizza():
+def create_pizza():
     data = request.json
     pizza_name = data.get('name')
     toppings = data.get('toppings')
     if pizza_name and toppings:
-        pizza_manager.add_pizza(pizza_name, toppings)
+        pizza_manager.create_pizza(pizza_name, toppings)
         return jsonify({"message": "Pizza added successfully"}), 201
     else:
         return jsonify({"error": "Missing pizza name or toppings"}), 400
@@ -97,11 +90,11 @@ def update_pizza(pizza_name):
         return jsonify({"error": "Missing new pizza name or toppings"}), 400
 
 @app.route('/pizzas/<pizza_name>/toppings', methods=['PUT'])
-def update_pizza_toppings(pizza_name):
+def update_toppings(pizza_name):
     data = request.json
     new_toppings = data.get('toppings')
     if new_toppings:
-        pizza_manager.update_pizza_toppings(pizza_name, new_toppings)
+        pizza_manager.update_toppings(pizza_name, new_toppings)
         return jsonify({"message": "Pizza toppings updated successfully"}), 200
     else:
         return jsonify({"error": "Missing new toppings"}), 400

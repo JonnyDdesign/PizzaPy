@@ -73,7 +73,7 @@ function displayPizzas() {
     .then(data => {
         const pizzasList = document.getElementById("pizzas-list");
         pizzasList.innerHTML = "";
-        data.pizzas.forEach(pizza => {
+        data.existing_pizzas.forEach(pizza => {
             const listItem = document.createElement("li");
             listItem.textContent = pizza.name;
 
