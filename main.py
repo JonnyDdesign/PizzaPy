@@ -4,7 +4,7 @@ from manage_pizzas import PizzaManager
 
 app = Flask(__name__, static_url_path='/static')
 
-# Instantiate PizzaToppingsList to manage toppings and SpecialtyPizzas to manage specialty pizzas
+# Instantiate PizzaToppingsList to manage toppings and PizzaManager to manage pizzas
 pizza_list = PizzaToppingsList()
 pizza_manager = PizzaManager()
 
@@ -38,8 +38,8 @@ def add_topping():
 @app.route("/delete_topping", methods=["DELETE"])
 def delete_topping():
     topping_to_delete = request.args.get("topping")
-    if topping_to_delete:
-        pizza_list.delete_topping(topping_to_delete)
+    if topping_to_delete in pizza_list:
+        pizza_list.remove(topping_to_delete)
         return jsonify({"message": f"{topping_to_delete} has been removed from the list of pizza toppings."}), 200
     else:
         return jsonify({"error": "Missing topping parameter."}), 400

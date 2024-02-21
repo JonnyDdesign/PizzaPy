@@ -68,39 +68,64 @@ displayToppings();
 
 //Manage pizzas functions
 function displayPizzas() {
-    // Implement logic to display regular pizzas using AJAX
-    // Example:
-    $.get("/api/regular_pizzas", function(data) {
-        alert("Regular Pizzas:\n" + data.join("\n"));
-    });
+    fetch("/existing_pizzas")
+    .then(response => response.json())
+    .then(data => {
+        const pizzasList = document.getElementById("pizzas-list");
+        pizzasList.innerHTML = "";
+        data.pizzas.forEach(pizza => {
+            const listItem = document.createElement("li");
+            listItem.textContent = pizza.name;
+
+            // Add delete button
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.className = "delete-button";
+            deleteButton.onclick = function() {
+                deletePizza(pizza.name);
+            };
+            listItem.appendChild(deleteButton);
+
+            pizzasList.appendChild(listItem);
+        });
+    })
+    .catch(error => console.error("Error:", error));
 }
+
 
 function addPizza() {
-    // Implement logic to add regular pizza using AJAX
-    // Example:
-    var pizzaName = prompt("Enter the name of the pizza:");
-    var toppings = prompt("Enter the toppings (comma-separated):").split(",");
-    $.post("/api/regular_pizzas", { name: pizzaName, toppings: toppings }, function(data) {
-        alert(data.message);
-    });
+    const newPizzaName = document.getElementById("new-pizza-name").value;
+    if (newPizzaName.trim() !== "") {
+        fetch("/create_pizza", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name: newPizzaName })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            if (data.message.includes("added")) {
+                displayPizzas();
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    } else {
+        alert("Please enter a pizza name.");
+    }
 }
 
-// Implement similar functions for other regular pizza methods (delete, update, update toppings)
-
-function displaySpecialtyPizzas() {
-    // Implement logic to display specialty pizzas using AJAX
-    // Example:
-    $.get("/api/specialty_pizzas", function(data) {
-        alert("Specialty Pizzas:\n" + data.join("\n"));
-    });
-}
-
-function addSpecialtyPizza() {
-    // Implement logic to add specialty pizza using AJAX
-    // Example:
-    var pizzaName = prompt("Enter the name of the pizza:");
-    var toppings = prompt("Enter the toppings (comma-separated):").split(",");
-    $.post("/api/specialty_pizzas", { name: pizzaName, toppings: toppings }, function(data) {
+function deletePizza(pizza) {
+    fetch(`/delete_pizza?pizza.name=${pizza.name}`, {
+        method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(data => {
         alert(data.message);
-    });
+        if (data.message.includes("removed")) {
+            displayPizzas();
+        }
+    })
+    .catch(error => console.error("Error:", error));
 }

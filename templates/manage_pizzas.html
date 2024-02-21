@@ -11,6 +11,15 @@
 <body>
     <h1>Manage Pizzas</h1>
 
+    <h2>Current Pizzas</h2>
+    <ul id="pizzas-list">
+        <!-- Toppings will be added dynamically here -->
+    </ul>
+
+    <h2>Add New Pizza</h2>
+    <input type="text" id="new-pizza-name" placeholder="Enter new pizza">
+    <button class="add-pizza-button" onclick="addPizza()">Add Pizza</button>
+
     <script src="{{ url_for('static', filename='app.js') }}"></script>
 
 </body>

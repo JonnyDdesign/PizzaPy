@@ -20,6 +20,10 @@ h2 {
     font-size: clamp(1.5rem, 3vw, 3rem);
 }
 
+p {
+    font-size: clamp(1.3rem, 2vw, 2rem);
+}
+
 .lead-question {
     font-size: clamp(2rem, 4vw, 4rem);
     margin-top: 0;
@@ -38,6 +42,7 @@ li {
 }
 
 button {
+    font-size: clamp(0.8rem, 2vw, 2rem);
     background-color: #FFAD00;
     color: #FEFEFF;
     border: none;
@@ -47,21 +52,8 @@ button {
     cursor: pointer;
 }
 
-/*.delete-button {
-    background-color: #FFAD00;
-    color: #FEFEFF;
-    border: none;
-    border-radius: 10px;
-    padding: 5px 10px;
-    margin: 3px;
-    cursor: pointer;
+@media only screen and (min-width: 769px) {
+    img {
+        width: 30%;
+    }
 }
-
-.add-topping-button {
-    background-color: #FFAD00;
-    color: #FEFEFF;
-    border: none;
-    border-radius: 10px;
-    padding: 5px 10px;
-    cursor: pointer;
-}*/
