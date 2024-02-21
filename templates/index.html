@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizza Toppings Manager</title>
+    <title>PizzaPy</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="icon" type="image/webp" href="../static/images/PizzaPy Favicon.webp">
 </head>
 
 <body>
 
-    <h1>Welcome to the Pizza<span class="py">Py</span></h1>
+    <img src="../static/images/PizzaPy Logo.webp" alt="Logo for PizzaPy">
+    <p class="lead-question">What would you like to do today?</p>
     <section>
-        <h2>Manage Toppings</h2>
+        <p>Manage Toppings</p>
         <button onclick="window.location.href='/manage_toppings'">Click to Manage Toppings</button>
     </section>
     <section>
-        <h2>Manage Pizzas</h2>
+        <p>Manage Pizzas</p>
         <button onclick="window.location.href='/manage_pizzas'">Click to Manage Pizzas</button>
     </section>
 

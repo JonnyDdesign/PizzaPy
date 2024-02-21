@@ -1,11 +1,14 @@
 from flask import Flask, render_template, request, jsonify
 from manage_toppings import PizzaToppingsList
+from manage_pizzas import PizzaManager
 
 app = Flask(__name__, static_url_path='/static')
 
-# Instantiate PizzaToppingsList to manage toppings
+# Instantiate PizzaToppingsList to manage toppings and SpecialtyPizzas to manage specialty pizzas
 pizza_list = PizzaToppingsList()
+pizza_manager = PizzaManager()
 
+# Routes to render HTML pages
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -18,6 +21,7 @@ def manage_toppings():
 def manage_pizzas():
     return render_template("manage_pizzas.html")
 
+# Routes to return list of pizza toppings, add a new topping, delete a topping, and update a topping
 @app.route("/toppings", methods=["GET"])
 def get_toppings():
     return jsonify({"toppings": pizza_list.toppings})
@@ -49,6 +53,58 @@ def update_topping():
         return jsonify({"message": f"{old_topping} has been updated to {new_topping}."}), 200
     else:
         return jsonify({"error": "Missing old_topping or new_topping parameter."}), 400
+
+# Routes to return list of pizzas, add a new pizza, delete a pizza, update a pizza, and update pizza toppings
+@app.route('/pizzas', methods=['GET'])
+def get_pizzas():
+    return jsonify(pizza_manager.pizzas)
+
+@app.route('/pizzas/<pizza_name>', methods=['GET'])
+def get_pizza(pizza_name):
+    if pizza_name.lower() in pizza_manager.pizzas:
+        return jsonify({pizza_name: pizza_manager.pizzas[pizza_name.lower()]})
+    else:
+        return jsonify({"error": "Pizza not found"}), 404
+
+@app.route('/pizzas', methods=['POST'])
+def add_pizza():
+    data = request.json
+    pizza_name = data.get('name')
+    toppings = data.get('toppings')
+    if pizza_name and toppings:
+        pizza_manager.add_pizza(pizza_name, toppings)
+        return jsonify({"message": "Pizza added successfully"}), 201
+    else:
+        return jsonify({"error": "Missing pizza name or toppings"}), 400
+
+@app.route('/pizzas/<pizza_name>', methods=['DELETE'])
+def delete_pizza(pizza_name):
+    if pizza_name.lower() in pizza_manager.pizzas:
+        pizza_manager.delete_pizza(pizza_name)
+        return jsonify({"message": "Pizza deleted successfully"}), 200
+    else:
+        return jsonify({"error": "Pizza not found"}), 404
+
+@app.route('/pizzas/<pizza_name>', methods=['PUT'])
+def update_pizza(pizza_name):
+    data = request.json
+    new_name = data.get('name')
+    new_toppings = data.get('toppings')
+    if new_name and new_toppings:
+        pizza_manager.update_pizza(pizza_name, new_name, new_toppings)
+        return jsonify({"message": "Pizza updated successfully"}), 200
+    else:
+        return jsonify({"error": "Missing new pizza name or toppings"}), 400
+
+@app.route('/pizzas/<pizza_name>/toppings', methods=['PUT'])
+def update_pizza_toppings(pizza_name):
+    data = request.json
+    new_toppings = data.get('toppings')
+    if new_toppings:
+        pizza_manager.update_pizza_toppings(pizza_name, new_toppings)
+        return jsonify({"message": "Pizza toppings updated successfully"}), 200
+    else:
+        return jsonify({"error": "Missing new toppings"}), 400
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)

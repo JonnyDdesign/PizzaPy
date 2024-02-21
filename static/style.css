@@ -4,6 +4,10 @@ body {
     text-align: center;
 }
 
+img {
+    width: 40%;
+}
+
 h1 {
     font-size: clamp(2.5rem, 4vw, 4rem);
 }
@@ -16,8 +20,13 @@ h2 {
     font-size: clamp(1.5rem, 3vw, 3rem);
 }
 
-h3 {
-    font-size: clamp(1rem, 2vw, 2.5rem);
+.lead-question {
+    font-size: clamp(2rem, 4vw, 4rem);
+    margin-top: 0;
+}
+
+.choices {
+    font-size: clamp(1rem, 2.5vw, 3rem);
 }
 
 #toppings-list {
@@ -28,7 +37,17 @@ li {
     margin: 5px 0;
 }
 
-.delete-button {
+button {
+    background-color: #FFAD00;
+    color: #FEFEFF;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 3px;
+    cursor: pointer;
+}
+
+/*.delete-button {
     background-color: #FFAD00;
     color: #FEFEFF;
     border: none;
@@ -45,13 +64,4 @@ li {
     border-radius: 10px;
     padding: 5px 10px;
     cursor: pointer;
-}
-
-button {
-    font-size: clamp(0.5rem, 2vw, 3rem);
-    background-color: #FFAD00;
-    border: 2px solid #FEFEFF;
-    border-radius: 10px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
+}*/

@@ -1,5 +1,6 @@
 // app.js
 
+//Manage pizza toppings functions
 function displayToppings() {
     fetch("/toppings")
     .then(response => response.json())
@@ -64,3 +65,42 @@ function deleteTopping(topping) {
 
 // Initial display of toppings when page loads
 displayToppings();
+
+//Manage pizzas functions
+function displayPizzas() {
+    // Implement logic to display regular pizzas using AJAX
+    // Example:
+    $.get("/api/regular_pizzas", function(data) {
+        alert("Regular Pizzas:\n" + data.join("\n"));
+    });
+}
+
+function addPizza() {
+    // Implement logic to add regular pizza using AJAX
+    // Example:
+    var pizzaName = prompt("Enter the name of the pizza:");
+    var toppings = prompt("Enter the toppings (comma-separated):").split(",");
+    $.post("/api/regular_pizzas", { name: pizzaName, toppings: toppings }, function(data) {
+        alert(data.message);
+    });
+}
+
+// Implement similar functions for other regular pizza methods (delete, update, update toppings)
+
+function displaySpecialtyPizzas() {
+    // Implement logic to display specialty pizzas using AJAX
+    // Example:
+    $.get("/api/specialty_pizzas", function(data) {
+        alert("Specialty Pizzas:\n" + data.join("\n"));
+    });
+}
+
+function addSpecialtyPizza() {
+    // Implement logic to add specialty pizza using AJAX
+    // Example:
+    var pizzaName = prompt("Enter the name of the pizza:");
+    var toppings = prompt("Enter the toppings (comma-separated):").split(",");
+    $.post("/api/specialty_pizzas", { name: pizzaName, toppings: toppings }, function(data) {
+        alert(data.message);
+    });
+}
