@@ -1,4 +1,5 @@
-#Manage pizza toppings section
+#Manage pizza toppings
+
 class PizzaToppingsList:
     def __init__(self):
         self.toppings = ["Pepperoni", "Sausage", "Ham", "Pineapple", "Green Peppers", "Black Olives", "Mushrooms", "Onions", "Jalapenos", "Broccoli" ]

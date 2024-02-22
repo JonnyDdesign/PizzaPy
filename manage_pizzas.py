@@ -1,4 +1,4 @@
-#Manage specialty pizzas section
+#Manage pizzas
 
 class PizzaManager:
     def __init__(self):
@@ -62,7 +62,7 @@ class PizzaManager:
 
     def update_toppings(self, name, new_toppings):
         for pizza in self.existing_pizzas:
-            if pizza["name"] == name:
+            if pizza["name"].lower() == name.lower():
                 pizza["toppings"] = new_toppings
                 print(f"Toppings of pizza '{name}' updated to: {', '.join(new_toppings)}")
                 return

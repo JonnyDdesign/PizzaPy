@@ -1,6 +1,5 @@
-// app.js
+// Manage pizza toppings functions
 
-//Manage pizza toppings functions
 function displayToppings() {
     fetch("/toppings")
     .then(response => response.json())
@@ -75,7 +74,7 @@ function displayPizzas() {
         pizzasList.innerHTML = "";
         data.existing_pizzas.forEach(pizza => {
             const listItem = document.createElement("li");
-            listItem.textContent = pizza.name;
+            listItem.textContent = existing_pizzas.name;
 
             // Add delete button
             const deleteButton = document.createElement("button");

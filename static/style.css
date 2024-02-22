@@ -21,12 +21,14 @@ h2 {
 }
 
 p {
-    font-size: clamp(1.3rem, 2vw, 2rem);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    text-decoration: underline #FFAD00;
 }
 
 .lead-question {
     font-size: clamp(2rem, 3vw, 4rem);
     margin-top: 0;
+    text-decoration: none;
 }
 
 .choices {
@@ -38,14 +40,25 @@ p {
 }
 
 li {
-    font-size: clamp(0.8rem, 2vw, 2rem);
-    margin: 8px 0;
+    font-size: clamp(0.8rem, 1.5vw, 2rem);
+    margin: 5px 0;
 }
+
+input[type=text] {
+    width: 20%;
+    padding: 10px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #FFAD00;
+    background-color: #000000;
+    color: #FEFEFF;
+  }
 
 button {
     font-size: clamp(0.8rem, 1.5vw, 2rem);
     background-color: #FFAD00;
-    color: #FEFEFF;
+    color: #000000;
     border: 1px dotted #FEFEFF;
     border-radius: 10px;
     padding: 5px 10px;

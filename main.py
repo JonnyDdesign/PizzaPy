@@ -38,11 +38,11 @@ def add_topping():
 @app.route("/delete_topping", methods=["DELETE"])
 def delete_topping():
     topping_to_delete = request.args.get("topping")
-    if topping_to_delete in pizza_list:
-        pizza_list.remove(topping_to_delete)
-        return jsonify({"message": f"{topping_to_delete} has been removed from the list of pizza toppings."}), 200
-    else:
-        return jsonify({"error": "Missing topping parameter."}), 400
+    for topping in pizza_list:
+        if topping["name"] == topping_to_delete:
+            pizza_list.remove(topping)
+            return jsonify({"message": f"{topping_to_delete} has been removed from the list of pizza toppings."}), 200
+    return jsonify({"error": f"Topping '{topping_to_delete}' not found."}), 200
 
 @app.route("/update_topping", methods=["PUT"])
 def update_topping():
