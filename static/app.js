@@ -91,8 +91,6 @@ function displayPizzas() {
     .catch(error => console.error("Error:", error));
 }
 
-
-
 function addPizza() {
     const newPizzaName = document.getElementById("new-pizza-name").value;
     if (newPizzaName.trim() !== "") {
@@ -116,15 +114,15 @@ function addPizza() {
     }
 }
 
-function deletePizza(pizza) {
-    fetch(`/delete_pizza?pizza.name=${pizza.name}`, {
+function deletePizza(pizzaName) {
+    fetch(`/delete_pizza/${pizzaName}`, {
         method: "DELETE"
     })
-    .then(response => response.json())
-    .then(data => {
-        alert(data.message);
-        if (data.message.includes("removed")) {
+    .then(response => {
+        if (response.ok) {
             displayPizzas();
+        } else {
+            console.error('Failed to delete pizza:', response.statusText);
         }
     })
     .catch(error => console.error("Error:", error));

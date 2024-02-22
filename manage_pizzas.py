@@ -45,12 +45,18 @@ class PizzaManager:
         print(f"New pizza '{name}' created with toppings: {', '.join(toppings)}")        
 
     def delete_pizza(self, name):
+        updated_pizzas = []
+        pizza_deleted = False
         for pizza in self.existing_pizzas:
             if pizza["name"] == name:
-                self.existing_pizzas.remove(pizza)
-                print(f"Pizza '{name}' deleted successfully.")
-                return
-        print(f"Error: Pizza '{name}' not found.")
+                pizza_deleted = True
+            else:
+                updated_pizzas.append(pizza)
+        if pizza_deleted:            
+            self.existing_pizzas = updated_pizzas
+            print(f"Pizza '{name}' deleted successfully.")
+        else:
+            print(f"Error: Pizza '{name}' not found.")
 
     def update_pizza(self, name, new_toppings):
         for pizza in self.existing_pizzas:
