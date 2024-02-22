@@ -41,8 +41,8 @@ def delete_topping():
     for topping in pizza_list:
         if topping["name"] == topping_to_delete:
             pizza_list.remove(topping)
-            return jsonify({"message": f"{topping_to_delete} has been removed from the list of pizza toppings."}), 200
-    return jsonify({"error": f"Topping '{topping_to_delete}' not found."}), 200
+            return jsonify({"message": f"{topping_to_delete} has been removed from the list of pizza toppings."}), 204
+    return jsonify({"error": f"Topping '{topping_to_delete}' not found."}), 404
 
 @app.route("/update_topping", methods=["PUT"])
 def update_topping():
@@ -55,11 +55,11 @@ def update_topping():
         return jsonify({"error": "Missing old_topping or new_topping parameter."}), 400
 
 # Routes to return list of pizzas, add a new pizza, delete a pizza, update a pizza, and update pizza toppings
-@app.route('/pizzas', methods=['GET'])
+@app.route('/existing_pizzas', methods=['GET'])
 def get_pizzas():
     return jsonify(pizza_manager.existing_pizzas)
 
-@app.route('/pizzas', methods=['POST'])
+@app.route('/create_pizza', methods=['POST'])
 def create_pizza():
     data = request.json
     pizza_name = data.get('name')
@@ -70,7 +70,7 @@ def create_pizza():
     else:
         return jsonify({"error": "Missing pizza name or toppings"}), 400
 
-@app.route('/pizzas/<pizza_name>', methods=['DELETE'])
+@app.route('/delete_pizza/<pizza_name>', methods=['DELETE'])
 def delete_pizza(pizza_name):
     if pizza_name.lower() in pizza_manager.pizzas:
         pizza_manager.delete_pizza(pizza_name)
@@ -78,7 +78,7 @@ def delete_pizza(pizza_name):
     else:
         return jsonify({"error": "Pizza not found"}), 404
 
-@app.route('/pizzas/<pizza_name>', methods=['PUT'])
+@app.route('/update_pizza/<pizza_name>', methods=['PUT'])
 def update_pizza(pizza_name):
     data = request.json
     new_name = data.get('name')
@@ -89,7 +89,7 @@ def update_pizza(pizza_name):
     else:
         return jsonify({"error": "Missing new pizza name or toppings"}), 400
 
-@app.route('/pizzas/<pizza_name>/toppings', methods=['PUT'])
+@app.route('/update_toppings/<pizza_name>', methods=['PUT'])
 def update_toppings(pizza_name):
     data = request.json
     new_toppings = data.get('toppings')

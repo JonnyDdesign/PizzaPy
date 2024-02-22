@@ -72,9 +72,9 @@ function displayPizzas() {
     .then(data => {
         const pizzasList = document.getElementById("pizzas-list");
         pizzasList.innerHTML = "";
-        data.existing_pizzas.forEach(pizza => {
+        data.forEach(pizza => {
             const listItem = document.createElement("li");
-            listItem.textContent = existing_pizzas.name;
+            listItem.textContent = `${pizza.name} - ${pizza.toppings}`;
 
             // Add delete button
             const deleteButton = document.createElement("button");
@@ -90,6 +90,7 @@ function displayPizzas() {
     })
     .catch(error => console.error("Error:", error));
 }
+
 
 
 function addPizza() {
@@ -128,3 +129,7 @@ function deletePizza(pizza) {
     })
     .catch(error => console.error("Error:", error));
 }
+
+window.addEventListener('load', function() {
+    displayPizzas();
+});

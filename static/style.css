@@ -9,7 +9,7 @@ img {
 }
 
 h1 {
-    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
 }
 
 .py {
@@ -17,7 +17,7 @@ h1 {
 }
 
 h2 {
-    font-size: clamp(1.5rem, 3vw, 3rem);
+    font-size: clamp(1.5rem, 2.5vw, 3rem);
 }
 
 p {
@@ -26,7 +26,7 @@ p {
 }
 
 .lead-question {
-    font-size: clamp(2rem, 3vw, 4rem);
+    font-size: clamp(1.8rem, 3vw, 4rem);
     margin-top: 0;
     text-decoration: none;
 }
@@ -35,7 +35,7 @@ p {
     font-size: clamp(1rem, 2.5vw, 3rem);
 }
 
-#toppings-list {
+ul {
     list-style-position: inside;
 }
 
@@ -56,7 +56,7 @@ input[type=text] {
   }
 
 button {
-    font-size: clamp(0.8rem, 1.5vw, 2rem);
+    font-size: clamp(0.5rem, 1vw, 1.5rem);
     background-color: #FFAD00;
     color: #000000;
     border: 1px dotted #FEFEFF;
@@ -64,6 +64,11 @@ button {
     padding: 5px 10px;
     margin: 3px;
     cursor: pointer;
+}
+
+button:hover {
+    background-color: #FEFEFF;
+    color: #FFAD00;
 }
 
 @media only screen and (min-width: 769px) {
