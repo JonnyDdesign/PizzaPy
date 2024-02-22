@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, jsonify, request
 from manage_toppings import PizzaToppingsList
 from manage_pizzas import PizzaManager
 
@@ -38,9 +38,9 @@ def add_topping():
 @app.route("/delete_topping", methods=["DELETE"])
 def delete_topping():
     topping_to_delete = request.args.get("topping")
-    for topping in pizza_list:
-        if topping["name"] == topping_to_delete:
-            pizza_list.remove(topping)
+    for topping in pizza_list.toppings:
+        if topping == topping_to_delete:
+            pizza_list.delete_topping(topping_to_delete)
             return jsonify({"message": f"{topping_to_delete} has been removed from the list of pizza toppings."}), 204
     return jsonify({"error": f"Topping '{topping_to_delete}' not found."}), 404
 

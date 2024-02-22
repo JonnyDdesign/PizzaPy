@@ -4,6 +4,11 @@ class PizzaToppingsList:
     def __init__(self):
         self.toppings = ["Pepperoni", "Sausage", "Ham", "Pineapple", "Green Peppers", "Black Olives", "Mushrooms", "Onions", "Jalapenos", "Broccoli" ]
 
+    def display_toppings(self):
+        print("Current list of pizza toppings:")
+        for topping in self.toppings:
+            print("-", topping)
+
     def add_topping(self, new_topping):
         if new_topping.strip() == "":
             print("Invalid topping name. Topping name cannot be empty.")
@@ -34,11 +39,6 @@ class PizzaToppingsList:
             print(f"{old_topping} has been updated to {new_topping}.")
         else:
             print(f"{old_topping} is not in the list of pizza toppings.")
-
-    def display_toppings(self):
-        print("Current list of pizza toppings:")
-        for topping in self.toppings:
-            print("-", topping)
 
 def manage_pizza_toppings():
     pizza_list = PizzaToppingsList()
