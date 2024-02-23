@@ -4,6 +4,10 @@ function displayToppings() {
     .then(response => response.json())
     .then(data => {
         const toppingsList = document.getElementById("toppings-list");
+        if (!toppingsList) {
+            console.error("Element with ID 'toppings-list' not found.");
+            return;
+        }
         toppingsList.innerHTML = "";
         if (!data?.toppings?.length) {
             console.log("No toppings available.");
